@@ -1,0 +1,56 @@
+{
+  "n_gen": 10,
+  "pop_size": 36,
+  "cx_prob": 0.7,
+  "mut_prob": 0.6,
+  "py_seed": 123,
+  "min_len": 20,
+  "max_len": 120,
+  "p_add_gene": 0.2,
+  "p_drop_gene": 0.4,
+  "p_replace_gene": 0.4,
+  "length_penalty": 10,
+  "n_molecules": 10000,
+  "temp": [
+    2.5e-05,
+    2.5e-05,
+    2.5e-05
+  ],
+  "K_max": 30,
+  "seed_file": "XY_original.npy",
+  "allowed_pulses": [
+    [
+      0,
+      -4
+    ],
+    [
+      0,
+      -3
+    ],
+    [
+      1,
+      -4
+    ],
+    [
+      1,
+      -3
+    ],
+    [
+      0,
+      -2
+    ],
+    [
+      1,
+      -2
+    ],
+    [
+      0,
+      -1
+    ],
+    [
+      1,
+      -1
+    ]
+  ],
+  "config_json": "config.json"
+}
