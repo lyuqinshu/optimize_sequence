@@ -12,6 +12,7 @@ from deap import base, creator, tools
 
 # Project imports (adjust paths/names to your project)
 import cu_rsc as cr                        
+cr.setup_tables()
 from cu_rsc.build_sequence import pulse_time      
 from tqdm import tqdm
 
@@ -329,11 +330,11 @@ if __name__ == "__main__":
     res   = cr.resources_from_config(M_dev)
     outdir = Path("ga_runs")
     cfg = GAConfig(
-        n_gen=10, pop_size=36, cx_prob=0.7, mut_prob=0.6,
+        n_gen=40, pop_size=100, cx_prob=0.7, mut_prob=0.6,
         min_len=20, max_len=120,
         p_add_gene=0.20, p_drop_gene=0.40, p_replace_gene=0.40,
-        length_penalty=10,
-        n_molecules=10_000, temp=(25e-6, 25e-6, 25e-6), K_max=30,
+        length_penalty=50,
+        n_molecules=50_000, temp=(25e-6, 25e-6, 25e-6), K_max=30,
         seed_file="XY_original.npy",
         allowed_pulses=[(0,-4), (0,-3), (1,-4), (1,-3),(0,-2),(1,-2),(0,-1),(1,-1)],  # or None to read from config.json
         config_json="config.json",
