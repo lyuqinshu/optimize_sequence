@@ -108,7 +108,7 @@ def score_sequence(seq_gpu: cp.ndarray, cfg: GAConfig, res: cr.GPUResources, ini
     cr.raman_cool_with_pumping(mol, seq_gpu, res, K_max=int(cfg.K_max))
 
     n_x, n_y, n_z, is_lost = mol[:, 0], mol[:, 1], mol[:, 2], mol[:, 5]
-    mask = (is_lost == 0) & (n_x == 0) & (n_y == 0) & (n_z < 36)
+    mask = (is_lost == 0) & (n_x == 0) & (n_y == 0) & (n_z < 12)
     raw = int(cp.count_nonzero(mask).get())
     penalized = raw - cfg.length_penalty * int(seq_gpu.shape[0])
     return float(penalized), raw
