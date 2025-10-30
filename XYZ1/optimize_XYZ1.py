@@ -37,7 +37,7 @@ class GAConfig:
     p_replace_gene: float = 0.40
 
     # Penalty
-    length_penalty: float = 0.0  # score -= len(genome) * length_penalty
+    length_penalty: float = 0.0  # score -= len(genome) * length_penalty * len(mol)
 
     # Simulation
     n_molecules: int = 50_000
@@ -110,7 +110,7 @@ def score_sequence(seq_gpu: cp.ndarray, cfg: GAConfig, res: cr.GPUResources, ini
     n_x, n_y, n_z, is_lost = mol[:, 0], mol[:, 1], mol[:, 2], mol[:, 5]
     mask = (is_lost == 0) & (n_x == 0) & (n_y == 0) & (n_z < 12)
     raw = int(cp.count_nonzero(mask).get())
-    penalized = raw - cfg.length_penalty * int(seq_gpu.shape[0])
+    penalized = raw - cfg.length_penalty * int(seq_gpu.shape[0]) * int(mol.shape[0])
     return float(penalized), raw
 
 
@@ -331,10 +331,10 @@ if __name__ == "__main__":
     res   = cr.resources_from_config(M_dev)
     outdir = Path("ga_runs")
     cfg = GAConfig(
-        n_gen=40, pop_size=100, cx_prob=0.7, mut_prob=0.6,
+        n_gen=40, pop_size=10, cx_prob=0.7, mut_prob=0.6,
         min_len=20, max_len=120,
         p_add_gene=0.20, p_drop_gene=0.40, p_replace_gene=0.40,
-        length_penalty=50,
+        length_penalty=1/1000,
         n_molecules=50_000, temp=(25e-6, 25e-6, 25e-6), K_max=30,
         seed_file="XYZ1_original.npy",
         allowed_pulses = [
