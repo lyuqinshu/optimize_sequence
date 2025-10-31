@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -p gpu
 #SBATCH -c 1
-#SBATCH -t 2-0:00:00 
+#SBATCH -t 0-12:00:00 
 #SBATCH --mem=8G
 #SBATCH -o py_%j.o 
 #SBATCH -e py_%j.e
@@ -15,5 +15,5 @@ eval "$(mamba shell hook --shell bash)"
 mamba activate RSC_sim
 
 cd $home
-cd optimize_sequence/all
-python optimize_all.py
+cd optimize_sequence/XYZ3
+python optimize_XYZ3.py
