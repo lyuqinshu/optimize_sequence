@@ -331,7 +331,7 @@ if __name__ == "__main__":
     outdir = Path("ga_runs")
     cfg = GAConfig(
         n_gen=40, pop_size=100, cx_prob=0.7, mut_prob=0.6,
-        min_len=20, max_len=120,
+        min_len=20, max_len=300,
         p_add_gene=0.20, p_drop_gene=0.40, p_replace_gene=0.40,
         length_penalty=50,
         n_molecules=50_000, temp=(25e-6, 25e-6, 25e-6), K_max=30,

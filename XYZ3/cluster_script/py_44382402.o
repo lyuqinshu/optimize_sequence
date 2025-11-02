@@ -1,0 +1,82 @@
+Running generation 0
+[Gen 000] best=15750.0  avg=15578.1  std=65.1
+Running generation 1
+[Gen 001] best=15805.0  avg=15453.1  std=523.9
+Running generation 2
+[Gen 002] best=15752.0  avg=15592.2  std=162.3
+Running generation 3
+[Gen 003] best=15778.0  avg=15544.5  std=399.5
+Running generation 4
+[Gen 004] best=15800.0  avg=15599.0  std=280.0
+Running generation 5
+[Gen 005] best=15825.0  avg=15554.8  std=512.8
+Running generation 6
+[Gen 006] best=15905.0  avg=15586.1  std=409.5
+Running generation 7
+[Gen 007] best=15908.0  avg=15691.6  std=213.4
+Running generation 8
+[Gen 008] best=16044.0  avg=15685.5  std=466.9
+Running generation 9
+[Gen 009] best=16132.0  avg=15746.0  std=379.0
+Running generation 10
+[Gen 010] best=16225.0  avg=15798.7  std=382.2
+Running generation 11
+[Gen 011] best=16181.0  avg=15892.2  std=373.2
+Running generation 12
+[Gen 012] best=16181.0  avg=15947.2  std=340.2
+Running generation 13
+[Gen 013] best=16258.0  avg=15991.5  std=297.9
+Running generation 14
+[Gen 014] best=16284.0  avg=16007.8  std=259.7
+Running generation 15
+[Gen 015] best=16338.0  avg=15961.0  std=490.9
+Running generation 16
+[Gen 016] best=16338.0  avg=16030.7  std=367.0
+Running generation 17
+[Gen 017] best=16299.0  avg=16096.4  std=255.4
+Running generation 18
+[Gen 018] best=16363.0  avg=16096.4  std=370.0
+Running generation 19
+[Gen 019] best=16371.0  avg=16052.8  std=495.1
+Running generation 20
+[Gen 020] best=16448.0  avg=16064.0  std=545.4
+Running generation 21
+[Gen 021] best=16360.0  avg=16162.4  std=193.9
+Running generation 22
+[Gen 022] best=16356.0  avg=16126.3  std=488.0
+Running generation 23
+[Gen 023] best=16457.0  avg=16114.5  std=522.2
+Running generation 24
+[Gen 024] best=16448.0  avg=16184.4  std=319.2
+Running generation 25
+[Gen 025] best=16477.0  avg=16173.3  std=507.4
+Running generation 26
+[Gen 026] best=16573.0  avg=16130.1  std=518.0
+Running generation 27
+[Gen 027] best=16508.0  avg=16229.9  std=339.0
+Running generation 28
+[Gen 028] best=16508.0  avg=16234.0  std=279.8
+Running generation 29
+[Gen 029] best=16522.0  avg=16181.9  std=550.3
+Running generation 30
+[Gen 030] best=16538.0  avg=16297.8  std=193.2
+Running generation 31
+[Gen 031] best=16535.0  avg=16301.3  std=213.3
+Running generation 32
+[Gen 032] best=16546.0  avg=16306.0  std=281.2
+Running generation 33
+[Gen 033] best=16528.0  avg=16301.2  std=387.8
+Running generation 34
+[Gen 034] best=16563.0  avg=16265.0  std=526.1
+Running generation 35
+[Gen 035] best=16563.0  avg=16269.1  std=418.2
+Running generation 36
+[Gen 036] best=16570.0  avg=16343.0  std=249.8
+Running generation 37
+[Gen 037] best=16582.0  avg=16368.9  std=261.8
+Running generation 38
+[Gen 038] best=16593.0  avg=16299.0  std=522.7
+Running generation 39
+[Gen 039] best=16636.0  avg=16369.5  std=282.0
+
+Saved run to: ga_runs/XYZ3_20251031_153905
