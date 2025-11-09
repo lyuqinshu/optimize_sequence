@@ -434,11 +434,11 @@ if __name__ == "__main__":
     outdir = Path("ga_runs")
 
     cfg = GAConfig(
-        n_gen=5, pop_size=10, cx_prob=0.7, mut_prob=0.6, py_seed=123,
+        n_gen=40, pop_size=100, cx_prob=0.7, mut_prob=0.6, py_seed=123,
         num_segments=5, seg_min_len=1, seg_max_len=64, rep_min=1, rep_max=20,
         # Penalty as percentage unit (e.g., 0.001 = 0.1% of n_molecules per pulse)
         length_penalty=0.001,
-        n_molecules=1000, temp=(25e-6, 25e-6, 25e-6), K_max=30,
+        n_molecules=50_000, temp=(25e-6, 25e-6, 25e-6), K_max=30,
         allowed_pulses=[(0,-6),(0,-5),(0,-4),(0,-3),(0,-2),(0,-1),
                         (1,-6),(1,-5),(1,-4),(1,-3),(1,-2),(1,-1),
                         (2,-9),(2,-8),(2,-7),(2,-6),(2,-5),(2,-4),(2,-3),(2,-2),(2,-1)],
