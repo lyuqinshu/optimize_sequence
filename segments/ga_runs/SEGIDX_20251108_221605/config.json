@@ -1,0 +1,121 @@
+{
+  "n_gen": 40,
+  "pop_size": 100,
+  "cx_prob": 0.7,
+  "mut_prob": 0.6,
+  "py_seed": 123,
+  "num_segments": 5,
+  "seg_min_len": 1,
+  "seg_max_len": 64,
+  "rep_min": 1,
+  "rep_max": 20,
+  "p_add_gene": 0.2,
+  "p_drop_gene": 0.4,
+  "p_replace_gene": 0.4,
+  "p_inc_rep": 0.25,
+  "p_dec_rep": 0.3,
+  "p_cx_swap_segment": 0.7,
+  "length_penalty": 0.001,
+  "n_molecules": 50000,
+  "temp": [
+    2.5e-05,
+    2.5e-05,
+    2.5e-05
+  ],
+  "K_max": 30,
+  "allowed_pulses": [
+    [
+      0,
+      -6
+    ],
+    [
+      0,
+      -5
+    ],
+    [
+      0,
+      -4
+    ],
+    [
+      0,
+      -3
+    ],
+    [
+      0,
+      -2
+    ],
+    [
+      0,
+      -1
+    ],
+    [
+      1,
+      -6
+    ],
+    [
+      1,
+      -5
+    ],
+    [
+      1,
+      -4
+    ],
+    [
+      1,
+      -3
+    ],
+    [
+      1,
+      -2
+    ],
+    [
+      1,
+      -1
+    ],
+    [
+      2,
+      -9
+    ],
+    [
+      2,
+      -8
+    ],
+    [
+      2,
+      -7
+    ],
+    [
+      2,
+      -6
+    ],
+    [
+      2,
+      -5
+    ],
+    [
+      2,
+      -4
+    ],
+    [
+      2,
+      -3
+    ],
+    [
+      2,
+      -2
+    ],
+    [
+      2,
+      -1
+    ]
+  ],
+  "config_json": "config.json",
+  "use_original_segments": true,
+  "seed_repeats": [
+    10,
+    5,
+    5,
+    10,
+    10
+  ]
+}
