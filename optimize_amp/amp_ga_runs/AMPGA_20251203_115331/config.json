@@ -1,0 +1,22 @@
+{
+  "n_gen": 4,
+  "pop_size": 8,
+  "cx_prob": 0.7,
+  "mut_prob": 0.8,
+  "py_seed": 42,
+  "sigma_init": 0.5,
+  "sigma_min": 0.05,
+  "sigma_max": 2.0,
+  "omega_min": 0.0,
+  "omega_max": 30.0,
+  "length_penalty": 0.0,
+  "n_molecules": 10000,
+  "temp": [
+    2.5e-05,
+    2.5e-05,
+    2.5e-05
+  ],
+  "K_max": 30,
+  "base_seq_npy": "all_original.npy",
+  "outdir": "amp_ga_runs"
+}
