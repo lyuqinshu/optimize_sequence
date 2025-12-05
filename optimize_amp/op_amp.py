@@ -351,7 +351,7 @@ if __name__ == "__main__":
         n_molecules=50_000,
         temp=(25e-6, 25e-6, 25e-6),
         K_max=30,
-        base_seq_npy="all_original.npy",
+        base_seq_npy="sequence_optimized.npy",
         outdir="amp_ga_runs",
     )
     run_amp_ga(cfg, res)
