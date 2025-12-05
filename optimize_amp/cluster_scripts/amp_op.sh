@@ -15,5 +15,5 @@ eval "$(mamba shell hook --shell bash)"
 mamba activate RSC_sim
 
 cd $home
-cd optimize_sequence/optimze_amp
+cd optimize_sequence/optimize_amp
 python op_amp.py
