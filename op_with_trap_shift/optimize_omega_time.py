@@ -161,7 +161,7 @@ def score_sequence_from_scales(
             pulses_dev=pulses_host,
             res=res,
             K_max=int(cfg.K_max),
-            show_progress=True,
+            show_progress=False,
             trap_detuning=(0, 0, det),
         )
         good = score_molecules(
@@ -477,7 +477,7 @@ if __name__ == "__main__":
     res   = cr.resources_from_config(M_dev)
 
     cfg = OmegaTimeGAConfig(
-        n_gen=50,
+        n_gen=40,
         pop_size=64,
         cx_prob=0.7,
         mut_prob=0.8,
@@ -490,7 +490,7 @@ if __name__ == "__main__":
         base_seq_npy="seq_partial.npy",
         outdir="omega_time_ga_runs",
         omega_scale_min=0.1,
-        omega_scale_max=1.5,
+        omega_scale_max=10.0,
         t_scale_min=0.1,
         t_scale_max=5.0,
     )
