@@ -501,12 +501,12 @@ if __name__ == "__main__":
     res   = cr.resources_from_config(M_dev)
 
     cfg = OmegaTimeGAConfig(
-        n_gen=5,
-        pop_size=5,
+        n_gen=40,
+        pop_size=64,
         cx_prob=0.7,
         mut_prob=0.8,
         py_seed=42,
-        n_molecules=100,
+        n_molecules=50_000,
         temp=(25e-6, 25e-6, 25e-6),
         K_max=30,
         base_seq_npy="sequence_new.npy",
