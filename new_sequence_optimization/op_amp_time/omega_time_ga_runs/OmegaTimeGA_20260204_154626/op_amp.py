@@ -94,60 +94,42 @@ def build_omega_time_mapping(base_seq: np.ndarray):
 def score_molecules(
     mol: cp.ndarray,
     *,
-    max_nz: int = 1,
-) -> Tuple[int, float, float]:
+    nxny_max: int = 1,
+    w_bad: float = 100.0,     # penalty for not meeting "good" fraction
+    w_lost: float = 50.0,    # extra penalty for losses
+    empty_score: float = 1e6 # if no good molecules
+) -> float:
     """
-    Score definition:
-      - score: number of molecules with nx==0, ny==0, nz <= max_nz,
-               and that are in the correct manifold (mN==1, spin==0) and not lost.
-      - good_fraction: score / N (fraction of the full cohort)
-      - nz_bar: mean(nz) among surviving molecules in the correct manifold
-                (mN==1, spin==0, is_lost==0). Returns nan if no survivors.
+    Minimization score:
+      - encourage survival (is_lost==0) and correct manifold (spin==0, mN==1)
+      - encourage nx, ny <= nxny_max
+      - minimize mean nz among the "good" molecules
 
-    Parameters
-    ----------
-    mol : cupy.ndarray
-        (N,6) array with columns [nx, ny, nz, mN, spin, is_lost]
-    max_nz : int
-        threshold for nz inclusion in the score (inclusive)
-
-    Returns
-    -------
-    (score_count, good_fraction, nz_bar)
+    Returns a Python float (smaller is better).
     """
-    if mol.ndim != 2 or mol.shape[1] < 6:
-        raise ValueError("mol must be shape (N,6)")
+    n_x, n_y, n_z = mol[:, 0], mol[:, 1], mol[:, 2]
+    is_lost, spin, mN = mol[:, 5], mol[:, 4], mol[:, 3]
 
-    n_x = mol[:, 0]
-    n_y = mol[:, 1]
-    n_z = mol[:, 2]
-    mN  = mol[:, 3]
-    spin = mol[:, 4]
-    is_lost = mol[:, 5]
+    N = mol.shape[0]
 
-    N = int(mol.shape[0])
+    base_ok = (spin == 0) & (mN == 1)
+    alive   = (is_lost == 0)
 
-    # Define survivors in the correct manifold
-    survived = (mN == 1) & (spin == 0) & (is_lost == 0)
-    surv_count = int(cp.count_nonzero(survived).get())
+    good = alive & base_ok & (n_x <= nxny_max) & (n_y <= nxny_max)
 
-    # Score: nx==0, ny==0, nz <= max_nz, and survived
-    meet_n_condition = (n_x == 0) & (n_y == 0) & (n_z <= int(max_nz))
-    good_mask = survived & meet_n_condition
+    good_count = cp.count_nonzero(good).astype(cp.float64)
+    lost_frac  = cp.count_nonzero(~alive).astype(cp.float64) / float(N)
+    good_frac  = good_count / float(N)
 
-    score_count = int(cp.count_nonzero(good_mask).get())
-    good_fraction = float(surv_count / N) if N > 0 else 0.0
+    # mean nz on good subset
+    avg_nz_good = cp.where(
+        good_count > 0,
+        cp.sum(n_z[good]).astype(cp.float64) / good_count,
+        cp.asarray(float(empty_score), dtype=cp.float64),
+    )
 
-    # nz_bar: mean nz among survived (correct manifold). nan if none.
-    surv_count = int(cp.count_nonzero(survived).get())
-    if surv_count > 0:
-        nz_sum = cp.sum(n_z[survived]).astype(cp.float64)
-        nz_bar = float((nz_sum / float(surv_count)).get())
-    else:
-        nz_bar = float("nan")
-
-    return score_count, good_fraction, nz_bar
-
+    score = avg_nz_good + w_bad * (1.0 - good_frac) + w_lost * lost_frac
+    return -float(score.get()), float(avg_nz_good.get()), float(good_frac.get()), float(1 - lost_frac.get())
 
 
 def score_sequence_from_scales(
@@ -206,8 +188,8 @@ def score_sequence_from_scales(
         show_progress=False,
     )
 
-    score, good, n_bar = score_molecules(mol)
-    return score, n_bar, good
+    score, n_bar, good, survive = score_molecules(mol)
+    return score, n_bar, good, survive
 
 
 # ==============================
@@ -265,7 +247,7 @@ def run_omega_time_ga(cfg: OmegaTimeGAConfig, res: cr.GPUResources) -> None:
 
     def evaluate(ind: np.ndarray) -> tuple:
         scales_vec = np.asarray(ind, dtype=float)
-        score, n_bar, good = score_sequence_from_scales(
+        score, n_bar, good, survive = score_sequence_from_scales(
             axes,
             dns,
             inverse,
@@ -277,6 +259,7 @@ def run_omega_time_ga(cfg: OmegaTimeGAConfig, res: cr.GPUResources) -> None:
         )
         ind.n_bar = n_bar
         ind.good = good
+        ind.survive = survive
         ind._num_pulses = int(base_seq.shape[0])
         return (score,)
 
@@ -404,6 +387,7 @@ def run_omega_time_ga(cfg: OmegaTimeGAConfig, res: cr.GPUResources) -> None:
             "n_bar": getattr(best_ind, "n_bar", None),
             "num_pulses": int(base_seq.shape[0]),
             "good": getattr(best_ind, "good", None),
+            "survive": getattr(best_ind, "survive", None),
             "unique_pairs": unique_pairs.tolist(),
             "omega_vector": omega_vec,     # NEW
             "time_vector": time_vec,       # NEW
@@ -491,6 +475,7 @@ def run_omega_time_ga(cfg: OmegaTimeGAConfig, res: cr.GPUResources) -> None:
             "n_bar": getattr(ind, "n_bar", None),
             "num_pulses": int(base_seq.shape[0]),
             "good": getattr(ind, "good", None),
+            "survive": getattr(ind, "survive", None),
             "unique_pairs": unique_pairs.tolist(),
             "omega_vector": omega_vec,       # NEW
             "time_vector": time_vec,         # NEW
@@ -524,11 +509,11 @@ if __name__ == "__main__":
         n_molecules=50_000,
         temp=(25e-6, 25e-6, 25e-6),
         K_max=30,
-        base_seq_npy="sequence_half.npy",
+        base_seq_npy="sequence_new.npy",
         outdir="omega_time_ga_runs",
-        omega_scale_min=0.001,
-        omega_scale_max=10.0,
-        t_scale_min=0.001,
-        t_scale_max=10.0,
+        omega_scale_min=0.1,
+        omega_scale_max=5.0,
+        t_scale_min=0.1,
+        t_scale_max=5.0,
     )
     run_omega_time_ga(cfg, res)
