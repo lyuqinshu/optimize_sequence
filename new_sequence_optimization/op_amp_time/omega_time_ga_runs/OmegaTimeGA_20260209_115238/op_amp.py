@@ -524,7 +524,7 @@ if __name__ == "__main__":
         n_molecules=50_000,
         temp=(25e-6, 25e-6, 25e-6),
         K_max=30,
-        base_seq_npy="seq_correct_gen_18.npy",
+        base_seq_npy="sequence_half.npy",
         outdir="omega_time_ga_runs",
         omega_scale_min=0.001,
         omega_scale_max=10.0,
