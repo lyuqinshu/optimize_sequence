@@ -1,0 +1,22 @@
+{
+  "n_gen": 40,
+  "pop_size": 64,
+  "cx_prob": 0.7,
+  "mut_prob": 0.8,
+  "py_seed": 42,
+  "omega_scale_sigma_init": 0.2,
+  "t_scale_sigma_init": 0.2,
+  "omega_scale_min": 0.001,
+  "omega_scale_max": 10.0,
+  "t_scale_min": 0.001,
+  "t_scale_max": 10.0,
+  "n_molecules": 50000,
+  "temp": [
+    2.5e-05,
+    2.5e-05,
+    2.5e-05
+  ],
+  "K_max": 30,
+  "base_seq_npy": "sequence_half.npy",
+  "outdir": "omega_time_ga_runs"
+}
