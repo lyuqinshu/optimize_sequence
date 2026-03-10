@@ -274,7 +274,11 @@ def score_sequence_from_scales(
     score_SLM, surv_SLM, nzbar_SLM = score_molecules(mol_SLM, max_nz=1)
     score_AOD, surv_AOD, nzbar_AOD = score_molecules(mol_AOD, max_nz=1)
 
-    score_total = min(score_SLM, score_AOD)
+    eps = 1e-9
+    gm = np.sqrt(score_SLM * score_AOD)
+    rel = abs(score_SLM - score_AOD) / (score_SLM + score_AOD + eps)
+    beta = 5.0
+    score_total = float(gm * np.exp(-beta * rel))
 
     return (
         score_total,

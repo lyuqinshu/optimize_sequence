@@ -1,0 +1,33 @@
+{
+  "n_gen": 40,
+  "pop_size": 100,
+  "cx_prob": 0.7,
+  "mut_prob": 0.8,
+  "py_seed": 42,
+  "omega_scale_sigma_init": 0.2,
+  "t_scale_sigma_init": 0.2,
+  "det_offset_sigma_init": 5000.0,
+  "omega_scale_min": 0.001,
+  "omega_scale_max": 100.0,
+  "t_scale_min": 0.001,
+  "t_scale_max": 100.0,
+  "pulse_freq_lim": 20000.0,
+  "omega_lin_max_xyz": [
+    20000.0,
+    20000.0,
+    10000.0
+  ],
+  "n_molecules": 10000,
+  "temp": [
+    2.5e-05,
+    2.5e-05,
+    2.5e-05
+  ],
+  "K_max": 30,
+  "trap_shift": -2000.0,
+  "carrier_shift": 3000.0,
+  "trap_shift_sigma": 300,
+  "carrier_shift_sigma": 300,
+  "base_seq_npy": "seq_cap.npy",
+  "outdir": "ga_runs"
+}
