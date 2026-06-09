@@ -1,0 +1,66 @@
+# --- PhD thesis Matplotlib style (readable, consistent, custom colors) ---
+
+# Typography (serif + STIX math works well for thesis PDFs)
+font.family: serif
+font.serif: Times New Roman, Times, TeX Gyre Termes, Nimbus Roman, DejaVu Serif
+mathtext.fontset: stix
+axes.unicode_minus: False
+
+# Readability (bigger than APS)
+font.size: 11
+axes.labelsize: 11
+axes.titlesize: 12
+xtick.labelsize: 10
+ytick.labelsize: 10
+legend.fontsize: 10
+
+# Figure + export
+figure.dpi: 150
+savefig.dpi: 600
+figure.constrained_layout.use: True
+savefig.bbox: tight
+savefig.pad_inches: 0.03
+
+# --- Default compact thesis figure size ---
+# width, height in inches
+figure.figsize: 3.5, 2.6
+
+# Axes styling
+axes.linewidth: 1.0
+axes.spines.top: True
+axes.spines.right: True
+
+# Ticks (thesis: clean, not overly "journal-y")
+xtick.direction: out
+ytick.direction: out
+xtick.major.size: 4.0
+ytick.major.size: 4.0
+xtick.minor.size: 2.5
+ytick.minor.size: 2.5
+xtick.major.width: 1.0
+ytick.major.width: 1.0
+xtick.minor.width: 0.8
+ytick.minor.width: 0.8
+xtick.minor.visible: True
+ytick.minor.visible: True
+
+# Light grid (helpful in thesis plots)
+axes.grid: True
+grid.linestyle: -
+grid.linewidth: 0.6
+grid.alpha: 0.25
+
+# Lines / markers (slightly thicker than default)
+lines.linewidth: 1.8
+lines.markersize: 5
+lines.markeredgewidth: 0.9
+
+# Legend
+legend.frameon: True
+legend.fancybox: False
+legend.framealpha: 0.95
+legend.borderpad: 0.3
+legend.handlelength: 1.6
+
+# Optional: consistent hatch/lines in B&W printing
+hatch.linewidth: 0.8
