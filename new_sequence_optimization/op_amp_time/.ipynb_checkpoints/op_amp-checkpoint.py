@@ -94,7 +94,7 @@ def build_omega_time_mapping(base_seq: np.ndarray):
 def score_molecules(
     mol: cp.ndarray,
     *,
-    max_nz: int = 1,
+    max_nz: int = 10,
 ) -> Tuple[int, float, float]:
     """
     Score definition:

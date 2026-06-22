@@ -339,7 +339,7 @@ def total_sequence_length(block_specs: List[Tuple[np.ndarray, int]]) -> int:
 def score_molecules(
     mol: cp.ndarray,
     *,
-    max_nz: int = 1,
+    max_nz: int = 10,
 ) -> Tuple[int, float, float]:
     if mol.ndim != 2 or mol.shape[1] < 6:
         raise ValueError("mol must be shape (N,6)")
