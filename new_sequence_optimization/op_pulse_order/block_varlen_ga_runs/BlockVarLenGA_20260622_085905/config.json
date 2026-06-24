@@ -1,0 +1,31 @@
+{
+  "n_gen": 40,
+  "pop_size": 64,
+  "cx_prob": 0.7,
+  "mut_prob": 0.8,
+  "py_seed": 42,
+  "seq_list_npy": "seq_list_0622.npy",
+  "seed_seq_npy": "seq_0622.npy",
+  "match_atol": 1e-12,
+  "match_rtol": 1e-09,
+  "fixed_n_blocks": null,
+  "min_block_len": 1,
+  "max_block_len": 16,
+  "repeat_min": 1,
+  "repeat_max": 20,
+  "index_mut_prob_per_gene": 0.08,
+  "length_mut_prob_per_block": 0.25,
+  "repeat_mut_prob_per_block": 0.25,
+  "random_reindex_mutation": true,
+  "local_index_step_sigma": 2.0,
+  "length_penalty_weight": 0.001,
+  "block_length_change_penalty_weight": 0.0,
+  "n_molecules": 50000,
+  "temp": [
+    2.5e-05,
+    2.5e-05,
+    2.5e-05
+  ],
+  "K_max": 30,
+  "outdir": "block_varlen_ga_runs"
+}

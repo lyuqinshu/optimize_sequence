@@ -1,0 +1,88 @@
+{
+  "gen": 34,
+  "penalized_score": 0.42528,
+  "raw_score": 0.57028,
+  "n_bar": 7.386918765066365,
+  "good": 0.68862,
+  "num_pulses": 145,
+  "length_penalty_weight": 0.001,
+  "block_specs": [
+    {
+      "pattern": [
+        3,
+        3,
+        8
+      ],
+      "repeats": 1
+    },
+    {
+      "pattern": [
+        0,
+        0,
+        7,
+        10,
+        12,
+        6,
+        7,
+        7,
+        3
+      ],
+      "repeats": 5
+    },
+    {
+      "pattern": [
+        7,
+        6,
+        8,
+        0,
+        1,
+        10,
+        4,
+        1,
+        11,
+        4,
+        0,
+        4
+      ],
+      "repeats": 4
+    },
+    {
+      "pattern": [
+        10,
+        5,
+        11,
+        10,
+        8,
+        5,
+        2
+      ],
+      "repeats": 6
+    },
+    {
+      "pattern": [
+        8,
+        4,
+        3,
+        10,
+        2,
+        0,
+        5
+      ],
+      "repeats": 1
+    }
+  ],
+  "block_lengths": [
+    3,
+    9,
+    12,
+    7,
+    7
+  ],
+  "block_repeats": [
+    1,
+    5,
+    4,
+    6,
+    1
+  ]
+}

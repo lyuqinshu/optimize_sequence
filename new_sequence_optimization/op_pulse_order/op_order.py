@@ -821,8 +821,8 @@ if __name__ == "__main__":
         mut_prob=0.8,
         py_seed=42,
 
-        seq_list_npy="seq_list_0406.npy",
-        seed_seq_npy="seq_rebuilt_0406.npy",
+        seq_list_npy="seq_list_0622.npy",
+        seed_seq_npy="seq_0622.npy",
 
         fixed_n_blocks=None,   # use reverse-engineered count
         min_block_len=1,
